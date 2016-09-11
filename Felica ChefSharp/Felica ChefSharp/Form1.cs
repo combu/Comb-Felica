@@ -269,7 +269,8 @@ namespace Felica_ChefSharp
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             string showMessage = "1. テキストボックスに名前を入力" + "\r\n" +
-                "2. 交通電子マネーをタッチ";
+                "2. Enterまたは登録ボタンをクリック" + "\r\n" +
+                "3. 交通電子マネーをタッチ";
 
             MessageBox.Show(showMessage, "登録手順", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -277,7 +278,8 @@ namespace Felica_ChefSharp
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             string showMessage = "1. テキストボックスに使用したパソコンの番号を入力" + "\r\n" +
-                "2. 交通電子マネーをタッチ";
+                "2. Enterまたは登録ボタンをクリック" + "\r\n" +
+                "3. 交通電子マネーをタッチ";
 
             MessageBox.Show(showMessage, "登録手順", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -353,6 +355,11 @@ namespace Felica_ChefSharp
             f2.Owner = this;
             f2.Show();
             f2.listUpdate(files);
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape) button5_Click(null, null);
         }
     }
 }
