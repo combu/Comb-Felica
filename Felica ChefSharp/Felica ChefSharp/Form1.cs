@@ -67,7 +67,6 @@ namespace Felica_ChefSharp
                 if (50 == i || max == i) mode = true;
                 else if (50 < i) break;
 
-                Console.WriteLine(">>"+i);
                 addHistory(historyOne.Name, historyOne.usePC, historyOne.loginTime, mode);
                 i++;
             }
@@ -181,7 +180,8 @@ namespace Felica_ChefSharp
             nameLabel.TextAlign = ContentAlignment.MiddleLeft;
 
             Label usePCLabel = new Label();
-            usePCLabel.Text = "使用したPC: " + usePC;
+            usePCLabel.Text = "使用したPC: " + usePC.Substring(0, usePC.Length > 20 ? 20 : usePC.Length)
+                + (usePC.Length > 20 ? "..." : "");
             usePCLabel.Font = new Font("Meiryo UI", 9F);
             usePCLabel.ForeColor = Color.FromArgb(100, 100, 100);
             usePCLabel.Location = new Point(2, 28);
@@ -220,7 +220,6 @@ namespace Felica_ChefSharp
                 for (int i=1; i<50; ++i)
                 {
                     if (i >= historyPanel.Count) break;
-                    Console.WriteLine(i);
                     historyPanel[i].Top = i * 50;
                 }
                 Update();

@@ -34,16 +34,15 @@ namespace Felica_ChefSharp
 
         public void listUpdate(string[] files)
         {
-            for (int i=0; i<filesList.Count; ++i)
+            for (int idx = panel1.Controls.Count - 1; 0 <= idx; idx--)
             {
-                try {
-                    Label listButton = filesList[0];
-                    listButton.Hide();
-                    panel1.Controls.Remove(listButton);
-                    filesList.RemoveAt(0);
+                try
+                {
+                    panel1.Controls[idx].Dispose();
                 }
                 catch { }
             }
+            filesList = new List<Label>();
 
             foreach (string file in files)
             {
@@ -126,15 +125,11 @@ namespace Felica_ChefSharp
             }
             catch { }
 
-            for (int i = 0; i < historyPanel.Count; ++i)
+            for (int idx = panel2.Controls.Count - 1; 0 <= idx; idx--)
             {
                 try
                 {
-                    Panel logListOne = historyPanel[0];
-                    logListOne.Hide();
-                    logListOne.Update();
-                    panel2.Controls.Remove(logListOne);
-                    historyPanel.RemoveAt(0);
+                    panel2.Controls[idx].Dispose();
                 }
                 catch { }
             }
@@ -167,7 +162,8 @@ namespace Felica_ChefSharp
                     nameLabel.TextAlign = ContentAlignment.MiddleLeft;
 
                     Label usePCLabel = new Label();
-                    usePCLabel.Text = "使用したPC: " + oneObj[2];
+                    usePCLabel.Text = "使用したPC: " + oneObj[2].Substring(0, oneObj[2].Length > 20 ? 20 : oneObj[2].Length)
+                        + (oneObj[2].Length > 20 ? "..." : "");
                     usePCLabel.Font = new Font("Meiryo UI", 9F);
                     usePCLabel.ForeColor = Color.FromArgb(100, 100, 100);
                     usePCLabel.Location = new Point(2, 28);

@@ -45,7 +45,6 @@ namespace Felica_ChefSharp
                 try
                 {
                     string alldata = CombEncrypt.Decrypt(saveData);
-                    Console.WriteLine(alldata);
 
                     string[] lines = alldata.Split(lineSplit);
                     foreach (string line in lines)
