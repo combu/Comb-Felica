@@ -190,17 +190,16 @@ namespace Felica_ChefSharp
 
 
 
-        public readonly static DateTime UnixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Local);
+        private static readonly DateTime UNIX_EPOCH = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
         public static long ToUnixTime(DateTime dateTime)
         {
-            dateTime = dateTime.ToUniversalTime();
-
-            return (long)dateTime.Subtract(UnixEpoch).TotalSeconds;
+            double nowTicks = (dateTime.ToUniversalTime() - UNIX_EPOCH).TotalSeconds;
+            return (long)nowTicks;
         }
-        
+
         public static DateTime FromUnixTime(long unixTime)
         {
-            return UnixEpoch.AddSeconds(unixTime);
+            return UNIX_EPOCH.AddSeconds(unixTime).ToLocalTime();
         }
     }
 }
