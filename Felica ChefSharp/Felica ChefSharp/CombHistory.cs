@@ -16,18 +16,25 @@ namespace Felica_ChefSharp
             public string uid;
             public string usePC;
         }
-        private List<HistoryObject> history = new List<HistoryObject>();
+        public List<HistoryObject> history = new List<HistoryObject>();
         private Dictionary<string, string> nameAndId = new Dictionary<string, string>();
 
-        private const char nameSplit = (char)3;
-        private const char lineSplit = (char)4;
-        private const char historySplit = (char)5;
-        private const string saveFilePath = "save.cfsd";
+        public const char nameSplit = (char)3;
+        public const char lineSplit = (char)4;
+        public const char historySplit = (char)5;
+        private string saveFilePath = "";
         private const string IdFilePath = "id.cfsd";
         private readonly Encoding textEncoding = Encoding.UTF8;
 
         public CombHistory()
         {
+            saveFilePath = "logs\\" + DateTime.Now.Year + "_" + DateTime.Now.Month + "_save.cfsd";
+
+            if (!Directory.Exists("logs"))
+            {
+                Directory.CreateDirectory("logs");
+            }
+
             if (File.Exists(IdFilePath))
             {
                 FileStream fs = new FileStream(IdFilePath, FileMode.Open, FileAccess.Read);

@@ -27,7 +27,10 @@ namespace Felica_ChefSharp
         delegate void memberDe(bool success);
         delegate void addHistoryDe(string name, string usePC, DateTime date, bool mode = false);
         delegate void loginErrorDe(string message);
+        delegate void p3HideDe();
         private CombHistory history;
+        private bool gone = false;
+        private Form2 f2 = new Form2();
 
         //UI用
         private List<Panel> historyPanel = new List<Panel>();
@@ -50,6 +53,9 @@ namespace Felica_ChefSharp
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            panel3.Left = (Width - panel3.Width) / 2;
+            panel3.Top = (Height - panel3.Height) / 2;
+
             history = new CombHistory();
 
             List<CombHistory.HistoryObject> historyData = history.getHistorys();
@@ -70,42 +76,48 @@ namespace Felica_ChefSharp
             {
                 while (true)
                 {
-                    using (Felica felicaObj = new Felica())
+                    if (gone)
                     {
-                        FelicaInfo FelicaData = readFelica(felicaObj);
-                        if (FelicaData.felicaUid != null && prevUid != FelicaData.felicaUid)
+                        using (Felica felicaObj = new Felica())
                         {
-                            if (textBox1.Text != "")
+                            FelicaInfo FelicaData = readFelica(felicaObj);
+                            if (FelicaData.felicaUid != null && prevUid != FelicaData.felicaUid)
                             {
-                                if (history.addMember(FelicaData.felicaUid, textBox1.Text))
-                                    Invoke(new memberDe(addMemberSuccess), new object[] { true });
-                                else
-                                    Invoke(new memberDe(addMemberSuccess), new object[] { false });
-                            }
-                            else if (textBox2.Text != "")
-                            {
-                                string usePC = textBox2.Text;
-                                try {
-                                    history.getName(FelicaData.felicaUid);
-                                }
-                                catch
+                                if (groupBox1.Enabled && gone)
                                 {
-                                    Invoke(new loginErrorDe(loginError), new object[] { "このカードは登録されていません。" });
-                                    continue;
+                                    if (history.addMember(FelicaData.felicaUid, textBox1.Text))
+                                        Invoke(new memberDe(addMemberSuccess), new object[] { true });
+                                    else
+                                        Invoke(new memberDe(addMemberSuccess), new object[] { false });
                                 }
-                                history.addHisotry(FelicaData.felicaUid, usePC);
-                                Invoke(new loginDe(login), new object[] { FelicaData, history.getName(FelicaData.felicaUid) });
-                                Invoke(new addHistoryDe(addHistory), new object[] {
+                                else if (groupBox2.Enabled && gone)
+                                {
+                                    string usePC = textBox2.Text;
+                                    try
+                                    {
+                                        history.getName(FelicaData.felicaUid);
+                                    }
+                                    catch
+                                    {
+                                        Invoke(new loginErrorDe(loginError), new object[] { "このカードは登録されていません。" });
+                                        continue;
+                                    }
+                                    history.addHisotry(FelicaData.felicaUid, usePC);
+                                    Invoke(new loginDe(login), new object[] { FelicaData, history.getName(FelicaData.felicaUid) });
+                                    Invoke(new addHistoryDe(addHistory), new object[] {
                                     history.getName(FelicaData.felicaUid),
                                     usePC,
                                     DateTime.Now,
                                     true
                                 });
 
-                                prevUid = FelicaData.felicaUid;
-                            }
-                            else {
-                                Invoke(new loginErrorDe(loginError), new object[] { "新規登録または使用したPCを入力してください" });
+                                    prevUid = FelicaData.felicaUid;
+                                }
+                                else {
+                                    Invoke(new loginErrorDe(loginError), new object[] { "新規登録または使用したPCを入力してください" });
+                                }
+
+                                Invoke(new p3HideDe(p3Hide));
                             }
                         }
                     }
@@ -113,6 +125,12 @@ namespace Felica_ChefSharp
                     Thread.Sleep(30);
                 }
             }).Start();
+        }
+
+        private void p3Hide()
+        {
+            panel3.Hide();
+            gone = false;
         }
 
         private void login(FelicaInfo info, string name)
@@ -295,6 +313,46 @@ namespace Felica_ChefSharp
             }
 
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            groupBox1.Enabled = !groupBox1.Enabled;
+            groupBox2.Enabled = !groupBox2.Enabled;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if ((groupBox1.Enabled && textBox1.Text == "") || (groupBox2.Enabled && textBox2.Text == ""))
+            {
+                MessageBox.Show("入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            gone = true;
+            panel3.Show();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            p3Hide();
+            gone = false;
+        }
+
+        private void textBox2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+                button3_Click(null, null);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            string[] files = Directory.GetFiles("logs", "*.cfsd", SearchOption.AllDirectories);
+
+            f2 = new Form2();
+            f2.Owner = this;
+            f2.Show();
+            f2.listUpdate(files);
         }
     }
 }
