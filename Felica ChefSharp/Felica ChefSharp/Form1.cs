@@ -31,6 +31,7 @@ namespace Felica_ChefSharp
         private CombHistory history;
         private bool gone = false;
         private Form2 f2 = new Form2();
+        private Form3 f3 = new Form3();
 
         //UI用
         private List<Panel> historyPanel = new List<Panel>();
@@ -353,17 +354,30 @@ namespace Felica_ChefSharp
 
         private void button6_Click(object sender, EventArgs e)
         {
-            string[] files = Directory.GetFiles("logs", "*.cfsd", SearchOption.AllDirectories);
+            if (!f2.Visible)
+            {
+                string[] files = Directory.GetFiles("logs", "*.cfsd", SearchOption.AllDirectories);
 
-            f2 = new Form2();
-            f2.Owner = this;
-            f2.Show();
-            f2.listUpdate(files);
+                f2 = new Form2();
+                f2.Owner = this;
+                f2.Show();
+                f2.listUpdate(files);
+            }
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape) button5_Click(null, null);
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (!f3.Visible)
+            {
+                f3 = new Form3();
+                f3.Owner = this;
+                f3.Show();
+            }
         }
     }
 }

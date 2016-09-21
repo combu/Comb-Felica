@@ -75,7 +75,7 @@ namespace Felica_ChefSharp
         public string getName(string uid)
         {
             if (nameAndId.ContainsKey(uid)) return nameAndId[uid];
-            else throw new Exception("登録されていないIDです。");
+            else return "Unknown";
         }
 
         public void addHisotry(string uid, string usePC)

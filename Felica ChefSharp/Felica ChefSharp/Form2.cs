@@ -113,6 +113,8 @@ namespace Felica_ChefSharp
             history = new CombHistory();
             string saveFilePath = ((Control)sender).Tag.ToString();
 
+            label2.Text = ((Label)sender).Text + "のログデータ";
+
             FileStream fs = new FileStream(saveFilePath, FileMode.Open, FileAccess.Read);
             byte[] saveData = new byte[fs.Length];
             fs.Read(saveData, 0, saveData.Length);

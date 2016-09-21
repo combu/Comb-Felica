@@ -39,22 +39,23 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button4 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.loginInfo = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -67,7 +68,7 @@
             this.loginDisplay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.loginDisplay.BackColor = System.Drawing.Color.Red;
             this.loginDisplay.Font = new System.Drawing.Font("Meiryo UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.loginDisplay.Location = new System.Drawing.Point(321, 20);
+            this.loginDisplay.Location = new System.Drawing.Point(441, 20);
             this.loginDisplay.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.loginDisplay.Name = "loginDisplay";
             this.loginDisplay.Size = new System.Drawing.Size(472, 42);
@@ -79,7 +80,7 @@
             this.usePC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.usePC.BackColor = System.Drawing.Color.Blue;
             this.usePC.Font = new System.Drawing.Font("Meiryo UI", 8F);
-            this.usePC.Location = new System.Drawing.Point(340, 62);
+            this.usePC.Location = new System.Drawing.Point(460, 62);
             this.usePC.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.usePC.Name = "usePC";
             this.usePC.Size = new System.Drawing.Size(453, 17);
@@ -95,7 +96,7 @@
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Location = new System.Drawing.Point(12, 42);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(300, 388);
+            this.panel1.Size = new System.Drawing.Size(420, 472);
             this.panel1.TabIndex = 3;
             // 
             // panel2
@@ -107,7 +108,7 @@
             this.panel2.Controls.Add(this.label4);
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(280, 50);
+            this.panel2.Size = new System.Drawing.Size(400, 50);
             this.panel2.TabIndex = 0;
             this.panel2.Visible = false;
             // 
@@ -127,7 +128,7 @@
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.Font = new System.Drawing.Font("Meiryo UI", 9F);
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-            this.label5.Location = new System.Drawing.Point(152, 28);
+            this.label5.Location = new System.Drawing.Point(272, 28);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(128, 20);
             this.label5.TabIndex = 1;
@@ -140,7 +141,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.Location = new System.Drawing.Point(3, 3);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(274, 20);
+            this.label4.Size = new System.Drawing.Size(394, 20);
             this.label4.TabIndex = 0;
             this.label4.Text = "NAME";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -152,7 +153,7 @@
             this.label1.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label1.Location = new System.Drawing.Point(12, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(301, 26);
+            this.label1.Size = new System.Drawing.Size(421, 26);
             this.label1.TabIndex = 4;
             this.label1.Text = "出席履歴";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -177,12 +178,25 @@
             this.groupBox1.Enabled = false;
             this.groupBox1.Font = new System.Drawing.Font("Meiryo UI", 10F);
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-            this.groupBox1.Location = new System.Drawing.Point(328, 232);
+            this.groupBox1.Location = new System.Drawing.Point(448, 232);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(465, 100);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "新規登録";
+            // 
+            // button4
+            // 
+            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button4.Font = new System.Drawing.Font("Meiryo UI", 8F);
+            this.button4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.button4.Location = new System.Drawing.Point(369, 66);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(76, 29);
+            this.button4.TabIndex = 14;
+            this.button4.Text = "登録";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button3_Click);
             // 
             // label2
             // 
@@ -202,6 +216,7 @@
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(51, 14);
             this.linkLabel1.TabIndex = 7;
+            this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "登録手順";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
@@ -214,12 +229,25 @@
             this.groupBox2.Controls.Add(this.textBox2);
             this.groupBox2.Font = new System.Drawing.Font("Meiryo UI", 10F);
             this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-            this.groupBox2.Location = new System.Drawing.Point(328, 129);
+            this.groupBox2.Location = new System.Drawing.Point(448, 129);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(465, 100);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "使用パソコンを登録";
+            // 
+            // button3
+            // 
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.Font = new System.Drawing.Font("Meiryo UI", 8F);
+            this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.button3.Location = new System.Drawing.Point(369, 66);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(76, 29);
+            this.button3.TabIndex = 13;
+            this.button3.Text = "登録";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // linkLabel2
             // 
@@ -230,6 +258,7 @@
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(51, 14);
             this.linkLabel2.TabIndex = 9;
+            this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "登録手順";
             this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
@@ -257,7 +286,7 @@
             this.loginInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.loginInfo.BackColor = System.Drawing.Color.Blue;
             this.loginInfo.Font = new System.Drawing.Font("Meiryo UI", 8F);
-            this.loginInfo.Location = new System.Drawing.Point(340, 84);
+            this.loginInfo.Location = new System.Drawing.Point(460, 84);
             this.loginInfo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.loginInfo.Name = "loginInfo";
             this.loginInfo.Size = new System.Drawing.Size(453, 17);
@@ -268,7 +297,7 @@
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.Font = new System.Drawing.Font("Meiryo UI", 9F);
-            this.button1.Location = new System.Drawing.Point(617, 384);
+            this.button1.Location = new System.Drawing.Point(737, 468);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(176, 46);
             this.button1.TabIndex = 10;
@@ -288,64 +317,6 @@
             this.panel3.TabIndex = 11;
             this.panel3.Visible = false;
             // 
-            // label7
-            // 
-            this.label7.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label7.Location = new System.Drawing.Point(3, 21);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(354, 26);
-            this.label7.TabIndex = 5;
-            this.label7.Text = "カードをかざしてください。";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label8
-            // 
-            this.label8.Font = new System.Drawing.Font("Meiryo UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(3, 65);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(354, 26);
-            this.label8.TabIndex = 6;
-            this.label8.Text = "FeliCa対応カードが使用できます。";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // button2
-            // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Font = new System.Drawing.Font("Meiryo UI", 8F);
-            this.button2.Location = new System.Drawing.Point(599, 337);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(194, 29);
-            this.button2.TabIndex = 12;
-            this.button2.Text = "新規登録/使用PCを登録 の切り替え";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button3
-            // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Font = new System.Drawing.Font("Meiryo UI", 8F);
-            this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button3.Location = new System.Drawing.Point(369, 66);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(76, 29);
-            this.button3.TabIndex = 13;
-            this.button3.Text = "登録";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button4
-            // 
-            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.Font = new System.Drawing.Font("Meiryo UI", 8F);
-            this.button4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button4.Location = new System.Drawing.Point(369, 66);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(76, 29);
-            this.button4.TabIndex = 14;
-            this.button4.Text = "登録";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button3_Click);
-            // 
             // button5
             // 
             this.button5.Font = new System.Drawing.Font("Meiryo UI", 8F);
@@ -357,11 +328,43 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
+            // label8
+            // 
+            this.label8.Font = new System.Drawing.Font("Meiryo UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(3, 65);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(354, 26);
+            this.label8.TabIndex = 6;
+            this.label8.Text = "FeliCa対応カードが使用できます。";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label7
+            // 
+            this.label7.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label7.Location = new System.Drawing.Point(3, 21);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(354, 26);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "カードをかざしてください。";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Font = new System.Drawing.Font("Meiryo UI", 8F);
+            this.button2.Location = new System.Drawing.Point(719, 337);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(194, 29);
+            this.button2.TabIndex = 12;
+            this.button2.Text = "新規登録/使用PCを登録 の切り替え";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // button6
             // 
             this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button6.Font = new System.Drawing.Font("Meiryo UI", 9F);
-            this.button6.Location = new System.Drawing.Point(435, 384);
+            this.button6.Location = new System.Drawing.Point(555, 468);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(176, 46);
             this.button6.TabIndex = 13;
@@ -369,11 +372,24 @@
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
+            // button7
+            // 
+            this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button7.Font = new System.Drawing.Font("Meiryo UI", 9F);
+            this.button7.Location = new System.Drawing.Point(737, 416);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(176, 46);
+            this.button7.TabIndex = 14;
+            this.button7.Text = "ユーザー管理";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(807, 442);
+            this.ClientSize = new System.Drawing.Size(927, 526);
+            this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.panel3);
@@ -434,6 +450,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button7;
     }
 }
 
