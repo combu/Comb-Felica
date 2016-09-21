@@ -55,6 +55,8 @@ namespace Felica_ChefSharp
         {
             panel3.Left = (Width - panel3.Width) / 2;
             panel3.Top = (Height - panel3.Height) / 2;
+            MaximumSize = Size;
+            MinimumSize = Size;
 
             history = new CombHistory();
 
@@ -287,8 +289,8 @@ namespace Felica_ChefSharp
         {
             SaveFileDialog sfd = new SaveFileDialog();
 
-            sfd.FileName = "名称未設定.xlsx";
-            sfd.Filter = "ExcelLファイル(*.xlsx)|*.xlsx";
+            sfd.FileName = "名称未設定.csv";
+            sfd.Filter = "CSVファイル[Excelで開ける](*.csv)|*.csv";
             sfd.FilterIndex = 1;
             sfd.Title = "出力先を選択してください。";
             sfd.RestoreDirectory = true;
@@ -308,9 +310,12 @@ namespace Felica_ChefSharp
 
                     writeObject.Insert(0, writeOne);
                 }
-                excelOutput.excel_OutPutEx(writeObject, sfd.FileName);
+                bool saveSuccess = excelOutput.excel_OutPutEx(writeObject, sfd.FileName);
 
-                MessageBox.Show("保存しました。", "完了", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (saveSuccess)
+                    MessageBox.Show("保存しました。", "完了", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                    MessageBox.Show("保存に失敗しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
 
