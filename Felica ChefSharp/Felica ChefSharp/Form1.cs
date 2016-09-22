@@ -97,7 +97,7 @@ namespace Felica_ChefSharp
                                     string usePC = textBox2.Text;
                                     try
                                     {
-                                        history.getName(FelicaData.felicaUid);
+                                        history.getName(FelicaData.felicaUid, true);
                                     }
                                     catch
                                     {
@@ -374,9 +374,12 @@ namespace Felica_ChefSharp
         {
             if (!f3.Visible)
             {
+                string[] files = Directory.GetFiles("logs", "*.cfsd", SearchOption.AllDirectories);
+
                 f3 = new Form3();
                 f3.Owner = this;
                 f3.Show();
+                f3.listUpdate(history.nameAndId, files);
             }
         }
     }

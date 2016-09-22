@@ -17,7 +17,7 @@ namespace Felica_ChefSharp
             public string usePC;
         }
         public List<HistoryObject> history = new List<HistoryObject>();
-        private Dictionary<string, string> nameAndId = new Dictionary<string, string>();
+        public Dictionary<string, string> nameAndId = new Dictionary<string, string>();
 
         public const char nameSplit = (char)3;
         public const char lineSplit = (char)4;
@@ -72,10 +72,13 @@ namespace Felica_ChefSharp
             }
         }
 
-        public string getName(string uid)
+        public string getName(string uid, bool exMode = false)
         {
             if (nameAndId.ContainsKey(uid)) return nameAndId[uid];
-            else return "Unknown";
+            else {
+                if(exMode) throw new Exception("登録されていないIDです。");
+                else return "Unknown";
+            }
         }
 
         public void addHisotry(string uid, string usePC)
