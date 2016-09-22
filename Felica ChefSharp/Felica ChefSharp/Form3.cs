@@ -18,6 +18,7 @@ namespace Felica_ChefSharp
 
         private List<Panel> historyPanel = new List<Panel>();
         private string selectedUid = "";
+        Font fnt = new Font("Meiryo UI", 11);
 
         public Form3()
         {
@@ -138,7 +139,6 @@ namespace Felica_ChefSharp
 
                     history.history.Add(addObj);
 
-
                     Panel parent = new Panel();
                     parent.Location = new Point(0, historyPanel.Count * 50);
                     parent.Size = new Size(panel2.Width - 20, 50);
@@ -196,6 +196,7 @@ namespace Felica_ChefSharp
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (selectedUid == "") return;
             history.nameAndId[selectedUid] = textBox1.Text;
             ((Form1)Owner).history.nameAndId[selectedUid] = textBox1.Text;
             history.saveMember();
@@ -218,6 +219,24 @@ namespace Felica_ChefSharp
             if(e.KeyCode == Keys.Enter)
             {
                 button1_Click(null, null);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (selectedUid == "") return;
+
+            DialogResult cfm =MessageBox.Show("本当にこのカードの登録を削除しますか？\r\n削除した登録データは復元できません。",
+                "警告", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if(cfm == DialogResult.Yes || cfm == DialogResult.OK)
+            {
+                history.nameAndId.Remove(selectedUid);
+                ((Form1)Owner).history.nameAndId.Remove(selectedUid);
+                history.saveMember();
+
+                Hide();
+                ((Form1)Owner).button7_Click(null, null);
             }
         }
     }

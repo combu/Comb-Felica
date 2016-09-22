@@ -38,11 +38,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -89,6 +90,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.ItemSize = new System.Drawing.Size(76, 25);
             this.tabControl1.Location = new System.Drawing.Point(318, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -144,6 +146,7 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage2.Controls.Add(this.button2);
             this.tabPage2.Controls.Add(this.textBox1);
             this.tabPage2.Controls.Add(this.label7);
             this.tabPage2.Controls.Add(this.label5);
@@ -156,22 +159,38 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "ユーザー情報の変更";
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(113, 13);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(405, 28);
+            this.textBox1.TabIndex = 5;
+            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+            // 
+            // label7
+            // 
+            this.label7.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label7.Location = new System.Drawing.Point(113, 47);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(484, 15);
+            this.label7.TabIndex = 4;
+            // 
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label5.Location = new System.Drawing.Point(17, 47);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(90, 15);
+            this.label5.Size = new System.Drawing.Size(71, 15);
             this.label5.TabIndex = 2;
-            this.label5.Text = "ユーザーID";
+            this.label5.Text = "カードID";
             // 
             // label2
             // 
             this.label2.Location = new System.Drawing.Point(17, 12);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(90, 28);
+            this.label2.Size = new System.Drawing.Size(71, 28);
             this.label2.TabIndex = 1;
-            this.label2.Text = "ユーザー名";
+            this.label2.Text = "名前";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // button1
@@ -184,21 +203,16 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label7
+            // button2
             // 
-            this.label7.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label7.Location = new System.Drawing.Point(113, 47);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(484, 15);
-            this.label7.TabIndex = 4;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(113, 13);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(405, 28);
-            this.textBox1.TabIndex = 5;
-            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.button2.Location = new System.Drawing.Point(409, 332);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(188, 47);
+            this.button2.TabIndex = 6;
+            this.button2.Text = "カードの削除";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form3
             // 
@@ -241,5 +255,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button button2;
     }
 }

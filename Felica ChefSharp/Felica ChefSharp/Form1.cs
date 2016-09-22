@@ -22,21 +22,23 @@ namespace Felica_ChefSharp
             public string felicaPm;
             public string felicaUid;
         }
-        public struct scanType {
-            public int NEW_REGISTRATION = 0;
-
+        public enum scanType : int {
+            NONE = 0,
+            NEW_REGISTRATION = 1,
+            ADD_HISTORY = 2,
+            CHEACK_CARD = 3
         }
         private string prevUid = null;
         delegate void loginDe(FelicaInfo info, string name);
         delegate void memberDe(bool success);
         delegate void addHistoryDe(string name, string usePC, DateTime date, string tag, bool mode = false);
         delegate void loginErrorDe(string message);
+        delegate void cardCheackDe(FelicaInfo cardInfo, string userName);
         delegate void p3HideDe();
         public CombHistory history;
-        private bool gone = false;
         private Form2 f2 = new Form2();
         private Form3 f3 = new Form3();
-        private 
+        private scanType scanMode = new scanType();
 
         //UI用
         private List<Panel> historyPanel = new List<Panel>();
@@ -83,21 +85,21 @@ namespace Felica_ChefSharp
             {
                 while (true)
                 {
-                    if (gone)
+                    if (scanMode != scanType.NONE)
                     {
                         using (Felica felicaObj = new Felica())
                         {
                             FelicaInfo FelicaData = readFelica(felicaObj);
                             if (FelicaData.felicaUid != null && prevUid != FelicaData.felicaUid)
                             {
-                                if (groupBox1.Enabled && gone)
+                                if (scanMode == scanType.NEW_REGISTRATION)
                                 {
                                     if (history.addMember(FelicaData.felicaUid, textBox1.Text))
                                         Invoke(new memberDe(addMemberSuccess), new object[] { true });
                                     else
                                         Invoke(new memberDe(addMemberSuccess), new object[] { false });
                                 }
-                                else if (groupBox2.Enabled && gone)
+                                else if (scanMode == scanType.ADD_HISTORY)
                                 {
                                     string usePC = textBox2.Text;
                                     try
@@ -121,6 +123,14 @@ namespace Felica_ChefSharp
 
                                     prevUid = FelicaData.felicaUid;
                                 }
+                                else if (scanMode == scanType.CHEACK_CARD)
+                                {
+                                    Invoke(new cardCheackDe(cardCheackRes), new object[]
+                                    {
+                                        FelicaData,
+                                        history.getName(FelicaData.felicaUid)
+                                    });
+                                }
                                 else {
                                     Invoke(new loginErrorDe(loginError), new object[] { "新規登録または使用したPCを入力してください" });
                                 }
@@ -138,7 +148,18 @@ namespace Felica_ChefSharp
         private void p3Hide()
         {
             panel3.Hide();
-            gone = false;
+            if (scanMode == scanType.NEW_REGISTRATION)
+            {
+                groupBox1.Enabled = true;
+                textBox1.Select();
+            }
+            else if (scanMode == scanType.ADD_HISTORY)
+            {
+                groupBox2.Enabled = true;
+                textBox2.Select();
+            }
+            button2.Enabled = true;
+            scanMode = scanType.NONE;
         }
 
         private void login(FelicaInfo info, string name)
@@ -338,20 +359,26 @@ namespace Felica_ChefSharp
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if ((groupBox1.Enabled && textBox1.Text == "") || (groupBox2.Enabled && textBox2.Text == ""))
+            if ((groupBox1.Enabled && textBox1.Text == "") || (groupBox2.Enabled && (textBox2.Text == "" || textBox2.Text.ToLower() == "unkown")))
             {
                 MessageBox.Show("入力してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            gone = true;
+            if (groupBox1.Enabled) scanMode = scanType.NEW_REGISTRATION;
+            else if (groupBox2.Enabled) scanMode = scanType.ADD_HISTORY;
+
+            groupBox1.Enabled = false;
+            groupBox2.Enabled = false;
+            button2.Enabled = false;
+
             panel3.Show();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             p3Hide();
-            gone = false;
+            scanMode = scanType.NONE;
         }
 
         private void textBox2_KeyDown(object sender, KeyEventArgs e)
@@ -378,7 +405,7 @@ namespace Felica_ChefSharp
             if (e.KeyCode == Keys.Escape) button5_Click(null, null);
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        public void button7_Click(object sender, EventArgs e)
         {
             if (!f3.Visible)
             {
@@ -405,7 +432,18 @@ namespace Felica_ChefSharp
 
         private void button8_Click(object sender, EventArgs e)
         {
+            scanMode = scanType.CHEACK_CARD;
+            panel3.Show();
+        }
 
+        private void cardCheackRes(FelicaInfo cardInfo, string userName)
+        {
+            Form4 f4 = new Form4();
+            f4.label2.Text = userName;
+            f4.label4.Text = cardInfo.felicaUid;
+            f4.label5.Text = BitConverter.ToString(Convert.FromBase64String(cardInfo.felicaPm));
+            f4.label7.Text = BitConverter.ToString(Convert.FromBase64String(cardInfo.felicaId));
+            f4.ShowDialog();
         }
     }
 }
