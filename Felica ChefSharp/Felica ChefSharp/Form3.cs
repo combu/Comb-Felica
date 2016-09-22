@@ -17,7 +17,7 @@ namespace Felica_ChefSharp
         private CombHistory history = new CombHistory();
 
         private List<Panel> historyPanel = new List<Panel>();
-        private string selectedUserName = "";
+        private string selectedUid = "";
 
         public Form3()
         {
@@ -70,7 +70,9 @@ namespace Felica_ChefSharp
         {
             comboBox1.SelectedIndex = -1;
             tabPage1.Text = ((Label)sender).Text + "の出席状況";
-
+            textBox1.Text = ((Label)sender).Text;
+            selectedUid = ((Label)sender).Tag.ToString();
+            label7.Text = selectedUid.Substring(0, 40) + "..." + selectedUid.Substring(0, 10);
         }
 
         private void label3_MouseEnter(object sender, EventArgs e)
@@ -132,7 +134,7 @@ namespace Felica_ChefSharp
                     addObj.Name = history.getName(oneObj[1]);
                     addObj.usePC = oneObj[2];
 
-                    if (selectedUserName != "*" && addObj.Name != selectedUserName) continue;
+                    if (selectedUid != "*" && addObj.uid != selectedUid) continue;
 
                     history.history.Add(addObj);
 
@@ -182,11 +184,41 @@ namespace Felica_ChefSharp
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Regex regexObj = new Regex("^(.*?)年(.*?)月", RegexOptions.IgnoreCase | RegexOptions.Singleline);
-            Match matchObj = regexObj.Match(comboBox1.SelectedItem.ToString());
+            if (comboBox1.SelectedIndex != -1)
+            {
+                Regex regexObj = new Regex("^(.*?)年(.*?)月", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                Match matchObj = regexObj.Match(comboBox1.SelectedItem.ToString());
 
-            string logFilePath = matchObj.Groups[1].Value + "_" + matchObj.Groups[2].Value + "_save.cfsd";
-            logListUpdate(logFilePath);
+                string logFilePath = matchObj.Groups[1].Value + "_" + matchObj.Groups[2].Value + "_save.cfsd";
+                logListUpdate(logFilePath);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            history.nameAndId[selectedUid] = textBox1.Text;
+            ((Form1)Owner).history.nameAndId[selectedUid] = textBox1.Text;
+            history.saveMember();
+
+            updateName(textBox1.Text);
+            ((Form1)Owner).updateName(textBox1.Text, selectedUid);
+        }
+
+        private void updateName(string updateText)
+        {
+            Control.ControlCollection updateItems = panel1.Controls;
+            foreach(Control controlOne in updateItems)
+            {
+                if (controlOne.Tag.ToString() == selectedUid) controlOne.Text = updateText;
+            }
+        }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                button1_Click(null, null);
+            }
         }
     }
 }

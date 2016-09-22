@@ -22,16 +22,21 @@ namespace Felica_ChefSharp
             public string felicaPm;
             public string felicaUid;
         }
+        public struct scanType {
+            public int NEW_REGISTRATION = 0;
+
+        }
         private string prevUid = null;
         delegate void loginDe(FelicaInfo info, string name);
         delegate void memberDe(bool success);
-        delegate void addHistoryDe(string name, string usePC, DateTime date, bool mode = false);
+        delegate void addHistoryDe(string name, string usePC, DateTime date, string tag, bool mode = false);
         delegate void loginErrorDe(string message);
         delegate void p3HideDe();
-        private CombHistory history;
+        public CombHistory history;
         private bool gone = false;
         private Form2 f2 = new Form2();
         private Form3 f3 = new Form3();
+        private 
 
         //UI用
         private List<Panel> historyPanel = new List<Panel>();
@@ -70,7 +75,7 @@ namespace Felica_ChefSharp
                 if (50 == i || max == i) mode = true;
                 else if (50 < i) break;
 
-                addHistory(historyOne.Name, historyOne.usePC, historyOne.loginTime, mode);
+                addHistory(historyOne.Name, historyOne.usePC, historyOne.loginTime, historyOne.uid, mode);
                 i++;
             }
 
@@ -110,6 +115,7 @@ namespace Felica_ChefSharp
                                     history.getName(FelicaData.felicaUid),
                                     usePC,
                                     DateTime.Now,
+                                    FelicaData.felicaUid,
                                     true
                                 });
 
@@ -169,18 +175,20 @@ namespace Felica_ChefSharp
             loginDisplay.ForeColor = Color.FromArgb(255, 50, 100);
         }
 
-        private void addHistory(string name, string usePC, DateTime date, bool mode = false)
+        private void addHistory(string name, string usePC, DateTime date, string uid, bool mode = false)
         {
             Panel parent = new Panel();
             parent.Location = new Point(0, 0);
             parent.Size = new Size(panel1.Width-20, 50);
             parent.Top = 0;
+            parent.Tag = uid;
 
             Label nameLabel = new Label();
             nameLabel.Text = name;
             nameLabel.Location = new Point(3, 3);
             nameLabel.Size = new Size(parent.Width, 20);
             nameLabel.TextAlign = ContentAlignment.MiddleLeft;
+            nameLabel.Name = "nameLabel";
 
             Label usePCLabel = new Label();
             usePCLabel.Text = "使用したPC: " + usePC.Substring(0, usePC.Length > 20 ? 20 : usePC.Length)
@@ -381,6 +389,23 @@ namespace Felica_ChefSharp
                 f3.Show();
                 f3.listUpdate(history.nameAndId, files);
             }
+        }
+
+        public void updateName(string updateText, string selectedUid)
+        {
+            Control.ControlCollection updateItems = panel1.Controls;
+            foreach (Control controlOne in updateItems)
+            {
+                if (controlOne.Tag.ToString() == selectedUid)
+                {
+                    controlOne.Controls.Find("nameLabel", false)[0].Text = updateText;
+                }
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
