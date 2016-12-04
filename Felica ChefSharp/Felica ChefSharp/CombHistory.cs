@@ -193,6 +193,7 @@ namespace Felica_ChefSharp
 
 
         private static readonly DateTime UNIX_EPOCH = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+
         public static long ToUnixTime(DateTime dateTime)
         {
             double nowTicks = (dateTime.ToUniversalTime() - UNIX_EPOCH).TotalSeconds;
